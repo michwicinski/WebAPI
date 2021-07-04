@@ -1,0 +1,25 @@
+﻿@using NotesOrganizer.Web.Models
+@model IEnumerable<Note>
+
+<h1 class="text-center"> Notatki </h1>
+
+<table class="table table-striped mt-5" style="table-layout: fixed; width: 100%">
+    
+    <thead>
+        <tr>
+            <th scope="col"> Tytuł </th>
+            <th scope="col"> Treść </th>
+        </tr>
+    </thead>
+    
+    @foreach (var element in Model)
+    {
+        <tbody>
+            <tr>
+                <td> @element.Title  </td>
+                <td> @element.Content </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
