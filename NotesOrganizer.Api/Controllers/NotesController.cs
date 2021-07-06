@@ -58,9 +58,9 @@ namespace NotesOrganizer.Api.Controllers
         }
 
         [HttpDelete("id")]
-        public IActionResult Delete(Guid Id)
+        public IActionResult Delete(Guid id)
         {
-            _noteService.Delete(Id);
+            _noteService.Delete(id);
 
             return NoContent();
         }

@@ -94,5 +94,15 @@ namespace NotesOrganizer.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public async Task<ActionResult> DeleteNote(string id)
+        {
+            using (var httpClient = new HttpClient(_clientHandler))
+            {
+                await httpClient.DeleteAsync("https://localhost:44392/api/Notes/id?id=" + id);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
