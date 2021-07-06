@@ -50,11 +50,11 @@ namespace NotesOrganizer.Api.Controllers
         }
 
         [HttpPut("id")]
-        public IActionResult Update(Guid Id, Note note)
+        public IActionResult Update(Guid id, NoteDto note)
         {
-            _noteService.Update(Id, note.Title, note.Content);
+            var updatedNote = _noteService.Update(id, note.Title, note.Content);
 
-            return NoContent();
+            return CreatedAtAction(nameof(Get), note.Id, updatedNote);
         }
 
         [HttpDelete("id")]

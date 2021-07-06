@@ -41,7 +41,8 @@ namespace NotesOrganizer.Infrastructure.Repositories
 
             if(result != null)
             {
-                result = note;
+                result.SetTitle(note.Title);
+                result.SetContent(note.Content);
             }
 
             await _dbContext.SaveChangesAsync();

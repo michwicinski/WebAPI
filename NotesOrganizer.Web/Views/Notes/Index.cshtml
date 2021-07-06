@@ -17,6 +17,7 @@
         <tr>
             <th scope="col"> Tytuł </th>
             <th scope="col"> Treść </th>
+            <th scope="col"> Akcje </th>
         </tr>
     </thead>
     
@@ -26,6 +27,10 @@
             <tr>
                 <td> @element.Title  </td>
                 <td> @element.Content </td>
+                <td>
+                    <a asp-action="NoteForm" asp-route-id="@element.Id"> Edytuj </a>
+                    <a asp-action="DeleteNote" asp-route-id="@element.Id"> Usuń </a>
+                </td>
             </tr>
         </tbody>
     }

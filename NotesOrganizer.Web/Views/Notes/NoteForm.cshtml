@@ -1,0 +1,12 @@
+﻿@model Note
+
+<h1 class="text-center"> Edycja </h1>
+
+<form asp-action="EditNote" method="post">
+
+    <input type="hidden" asp-for="@Model.Id" value="@Model.Id" />
+    <input asp-for="@Model.Title" value="@Model.Title" />
+    <input asp-for="@Model.Content" value="@Model.Content" />
+    <input type="submit" value="Edytuj notatkę">
+
+</form>
