@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NotesOrganizer.Web.Models;
+using NotesOrganizer.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace NotesOrganizer.Web.Controllers
@@ -13,12 +15,14 @@ namespace NotesOrganizer.Web.Controllers
     {
         HttpClientHandler _clientHandler = new HttpClientHandler();
         
-
         public async Task<IActionResult> Index()
         {
             List<Note> notes = await GetAllNotes();
 
-            return View(notes);
+            NoteViewModel allNotes = new NoteViewModel();
+            allNotes.AllNotes = notes;
+
+            return View(allNotes);
         }
 
         public NotesController()
@@ -41,6 +45,18 @@ namespace NotesOrganizer.Web.Controllers
             }
 
             return notes;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddNote(Note note)
+        {
+            using (var httpClient = new HttpClient(_clientHandler))
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(note), Encoding.UTF8, "application/json");
+                await httpClient.PostAsync("https://localhost:44392/api/Notes", content);
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

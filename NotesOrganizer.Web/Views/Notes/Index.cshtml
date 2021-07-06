@@ -1,7 +1,15 @@
-﻿@using NotesOrganizer.Web.Models
-@model IEnumerable<Note>
+﻿@using NotesOrganizer.Web.ViewModels
+@model NoteViewModel
 
 <h1 class="text-center"> Notatki </h1>
+
+<form asp-action="AddNote" method="post">
+
+    <input asp-for="@Model.Note.Title" />
+    <input asp-for="@Model.Note.Content" />
+    <input type="submit" value="Dodaj notatkę">
+
+</form>
 
 <table class="table table-striped mt-5" style="table-layout: fixed; width: 100%">
     
@@ -12,7 +20,7 @@
         </tr>
     </thead>
     
-    @foreach (var element in Model)
+    @foreach (var element in Model.AllNotes)
     {
         <tbody>
             <tr>
